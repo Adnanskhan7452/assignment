@@ -1,0 +1,85 @@
+// 1. Object data model for Nudge:
+
+{
+  "title": String,
+  "image": File,
+  "schedule": Date,
+  "timings": {
+    "from": String,
+    "to": String
+  },
+  "description": String,
+  "icon": File,
+  "invitation": String,
+  "event": ObjectID //reference to the Event object
+}
+
+
+// 2. API Structure:
+Base URL: /api/v1/nudge
+All requests must include the following headers:
+Content-Type: application/json
+Authorization: Bearer <access_token>
+Responses will be in JSON 
+
+// 3.API Endpoints:
+
+ POST /create:
+
+ Creates a new nudge for an event
+ Payload:
+ title: String (required)
+ image: File (required)
+ schedule: Date (required)
+ timings: Object (required)
+ from: String (required)
+ to: String (required)
+ description: String (required)
+ icon: File (required)
+ invitation: String (required)
+ event: ObjectID (required)
+ Response:
+ Status: 201 Created
+ Body: JSON object of the created nudge
+
+ GET /:id:
+
+ Gets the details of a specific nudge
+ Parameters:
+ id: ObjectID (required)
+ Response:
+ Status: 200 OK
+ Body: JSON object of the nudge
+
+ PUT /:id:
+ Updates an existing nudge
+ Parameters:
+ id: ObjectID (required)
+ Payload:
+ title: String
+ image: File
+ schedule: Date
+ timings: Object
+ from: String
+ to: String
+ description: String
+ icon: File
+ invitation: String
+ event: ObjectID
+ Response:
+ Status: 200 OK
+ Body: JSON object of the updated nudge
+
+ DELETE /:id:
+ Deletes an existing nudge
+ Parameters:
+ id: ObjectID (required)
+ Response:
+ Status: 200 OK
+ Body: JSON object of the deleted 
+
+ CRUD Functionalities:
+ Create: Send a POST request to /create with the nudge details in the payload
+ Read: Send a GET request to /:id with the ID of the nudge to be fetched
+ Update: Send a PUT request to /:id with the ID of the nudge to be updated and the updated nudge details in the payload
+ Delete: Send a DELETE request to /:id with the ID of the nudge to be deleted
